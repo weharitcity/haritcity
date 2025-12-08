@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harit City | Premium Plots on Yamuna Expressway</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="logo.jpg" alt="Harit City Logo"> Harit City
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#" onclick="openModal()">Brochure</a></li>
+                <li><a href="#about">The Township</a></li>
+                <li><a href="#amenities">Amenities</a></li>
+                <li><a href="#location">Location</a></li>
+                <li><a href="#contact" class="btn-primary">Enquire Now</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1>Welcome to Harit City</h1>
+                <p>Premium Residential Plots near Jewar Airport & Yamuna Expressway</p>
+                <button onclick="openModal()" class="btn-large">Download Brochure</button>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">Experience Serenity</h2>
+            <p class="section-subtitle">A modern township designed for a holistic lifestyle.</p>
+            
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>Harit City is a meticulously planned township located strategically on the Yamuna Expressway. Offering a perfect blend of nature and modernity, we provide a lifestyle that is both luxurious and sustainable. With close proximity to the upcoming Jewar International Airport, Harit City is the investment of a lifetime.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-box">
+                        <h3>5</h3>
+                        <p>Lush Green Parks</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>1</h3>
+                        <p>Golf Theme Park</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>100%</h3>
+                        <p>Secure Gated Community</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="township-gallery">
+                <img src="1.jpg" alt="Harit City View 1">
+                <img src="2.jpg" alt="Harit City View 2">
+                <img src="3.jpg" alt="Harit City View 3">
+                <img src="4.jpg" alt="Harit City View 4">
+            </div>
+        </div>
+    </section>
+
+    <section id="amenities" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">World-Class Amenities</h2>
+            <div class="amenities-grid">
+                <div class="amenity-card">
+                    <i class="fas fa-golf-ball"></i>
+                    <h3>Golf Theme Park</h3>
+                    <p>Exclusive recreational area for golf enthusiasts.</p>
+                </div>
+                <div class="amenity-card">
+                    <i class="fas fa-tree"></i>
+                    <h3>5 Central Parks</h3>
+                    <p>Expansive green lungs for fresh air and morning walks.</p>
+                </div>
+                <div class="amenity-card">
+                    <i class="fas fa-gopuram"></i>
+                    <h3>Grand Temple</h3>
+                    <p>A spiritual center within the community.</p>
+                </div>
+                <div class="amenity-card">
+                    <i class="fas fa-building"></i>
+                    <h3>Clubhouse</h3>
+                    <p>Luxury clubhouse with gym, pool, and indoor games.</p>
+                </div>
+                <div class="amenity-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Community Centre</h3>
+                    <p>Space for social gatherings and events.</p>
+                </div>
+                <div class="amenity-card">
+                    <i class="fas fa-store"></i>
+                    <h3>Central Market</h3>
+                    <p>Daily convenience shopping within the township.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="location" class="section">
+        <div class="container">
+            <h2 class="section-title">Strategic Location</h2>
+            <div class="location-content">
+                <ul class="location-list">
+                    <li><i class="fas fa-plane-departure"></i> <strong>Jewar International Airport:</strong> Just minutes away.</li>
+                    <li><i class="fas fa-road"></i> <strong>Yamuna Expressway:</strong> Direct connectivity to Delhi & Agra.</li>
+                    <li><i class="fas fa-film"></i> <strong>Film City:</strong> Upcoming major entertainment hub nearby.</li>
+                    <li><i class="fas fa-industry"></i> <strong>Tech Zone:</strong> Close to upcoming industrial hubs.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer">
+        <div class="container">
+            <h2>Invest in Harit City Today</h2>
+            <p>Contact us for plot sizes, pricing, and site visits.</p>
+            
+            <form class="contact-form" id="enquiryForm">
+                <input type="text" id="enq-name" placeholder="Your Name *" required>
+                <input type="email" id="enq-email" placeholder="Your Email *" required>
+                <input type="tel" id="enq-mobile" placeholder="Your Phone Number (10 digits) *" pattern="[0-9]{10}" title="Please enter a valid 10-digit number" required>
+                <input type="text" id="enq-city" placeholder="Your City *" required>
+                <button type="submit" class="btn-primary">Request Call Back</button>
+            </form>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Harit City. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="brochureModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Download Brochure</h2>
+            <p>Please fill all details below to unlock the download.</p>
+            
+            <form id="brochureForm">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Name *" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="mobile" placeholder="Mobile Number (10 digits) *" pattern="[0-9]{10}" title="Please enter a valid 10-digit number" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Email Address *" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="city" placeholder="City *" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Download Now</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
