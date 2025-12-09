@@ -300,7 +300,7 @@ ul { list-style: none; }
 }
 
 .stat-item i {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     margin-bottom: 15px;
     opacity: 0.9;
     background: rgba(255, 255, 255, 0.2); /* Subtle circle effect behind icon */
@@ -314,7 +314,7 @@ ul { list-style: none; }
 }
 
 .stat-item h2 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: 700;
     margin-bottom: 5px;
     font-family: 'Outfit', sans-serif; /* Matches your Logo font */
