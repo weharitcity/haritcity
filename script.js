@@ -172,3 +172,51 @@ document.getElementById('enquiryForm').addEventListener('submit', function(e) {
         btn.disabled = false;
     });
 });
+// --- Stats Counter Animation (Custom Start Points) ---
+
+const statsSection = document.querySelector('.stats-banner');
+const counters = document.querySelectorAll('.counter');
+let hasStarted = false; 
+
+function startCounters() {
+    counters.forEach(counter => {
+        // Get the start and target values from HTML
+        const start = +counter.getAttribute('data-start');
+        const target = +counter.getAttribute('data-target');
+        
+        // Set the initial number visible to the user
+        counter.innerText = start;
+
+        // Calculate increment step to finish in approx 2 seconds (100 frames)
+        // We calculate the difference (e.g. 900 - 800 = 100) and divide by 100 steps
+        const increment = (target - start) / 15; 
+
+        function updateCount() {
+            // Get current value (removing any + signs)
+            const count = +counter.innerText.replace('+', ''); 
+            
+            if (count < target) {
+                // Add increment
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(updateCount, 20); // Run every 20ms
+            } else {
+                // Finish exactly on target
+                counter.innerText = target + "+";
+            }
+        }
+        
+        updateCount();
+    });
+}
+
+// Observer: Triggers animation when section scrolls into view
+const statsObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !hasStarted) {
+        startCounters();
+        hasStarted = true; 
+    }
+}, { threshold: 0.5 }); 
+
+if (statsSection) {
+    statsObserver.observe(statsSection);
+}
