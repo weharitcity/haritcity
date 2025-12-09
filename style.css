@@ -92,15 +92,15 @@ ul { list-style: none; }
 .logo {
     display: flex;
     align-items: center;
-    font-family: 'Helvetica', 'Arial', sans-serif;
-    font-weight: 800;
-    /*font-style: italic;*/
-    font-size: 1.8rem; 
-    color: var(--primary-color); 
-    text-transform: uppercase;
-    letter-spacing: -1px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1.6rem; 
+    color: var(--text-color); 
+    text-transform: none;
+    letter-spacing: -0.5px;
 }
-.logo img { height: 40px; margin-right: 10px; }
+.logo img { height: 40px; margin-right: 12px; }
 
 .nav-links { display: flex; gap: 20px; align-items: center; }
 .nav-links a { font-weight: 500; font-size: 0.9rem; color: var(--text-color); }
