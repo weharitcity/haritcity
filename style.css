@@ -96,7 +96,7 @@ ul { list-style: none; }
     font-weight: 600;
     font-style: normal;
     font-size: 1.6rem; 
-    color: var(--text-color); 
+    color: #219150; 
     text-transform: none;
     letter-spacing: -0.5px;
 }
