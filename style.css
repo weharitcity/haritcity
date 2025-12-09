@@ -229,14 +229,48 @@ ul { list-style: none; }
         width: 100%;
         background-color: var(--nav-bg); 
         flex-direction: column;
-        align-items: center;
-        padding: 20px 0;
+        
+        /* UPDATED: Aligns items to the left side */
+        align-items: flex-start; 
+        
+        /* UPDATED: Adds padding so text isn't stuck to the edge */
+        padding: 20px; 
+        
         box-shadow: 0 10px 10px var(--shadow-color);
         border-top: 1px solid var(--border-color);
     }
 
     .nav-links.active { display: flex; } /* Shown when clicked */
 
-    .nav-links li { margin: 15px 0; width: 100%; text-align: center; }
-    .theme-toggle { margin-left: 0; margin-top: 10px; font-size: 1.5rem; }
+    .nav-links li {
+        /* UPDATED: Reduced margin (Space between items) */
+        margin: 8px 0; 
+        
+        /* UPDATED: Left align text */
+        text-align: left; 
+        width: 100%;
+        
+        /* Optional: Adds a thin line between items for a cleaner look */
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 8px;
+    }
+    
+    /* Remove border from the last item (Enquire button) */
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+
+    /* Make the Enquire button full width on mobile */
+    .nav-links .btn-primary {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Adjust Toggle Button (Sun/Moon) position */
+    .theme-toggle { 
+        margin-left: 0; 
+        margin-top: 5px; 
+        font-size: 1.5rem; 
+    }
 }
