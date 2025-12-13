@@ -1,4 +1,4 @@
-/* --- CSS VARIABLES (Theme Colors) --- */
+/* --- CSS VARIABLES --- */
 :root {
     --bg-color: #ffffff;
     --text-color: #333333;
@@ -23,18 +23,13 @@ body.dark-mode {
 
 /* General Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0; padding: 0; box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--bg-color);
-    font-family: 'Helvetica', 'Arial', sans-serif; 
+    line-height: 1.6; color: var(--text-color); background-color: var(--bg-color);
 }
 
 a { text-decoration: none; color: inherit; }
@@ -46,154 +41,245 @@ ul { list-style: none; }
 .bg-light { background-color: var(--section-bg); }
 
 .section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    color: var(--primary-color);
+    text-align: center; font-size: 2.5rem; margin-bottom: 10px; color: var(--primary-color);
 }
-
 .section-subtitle {
-    text-align: center;
-    margin-bottom: 50px;
-    color: var(--text-color);
-    opacity: 0.8;
+    text-align: center; margin-bottom: 50px; color: var(--text-color); opacity: 0.8;
 }
-
 .btn-primary {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    background-color: var(--primary-color); color: white; padding: 10px 20px;
+    border: none; border-radius: 5px; cursor: pointer;
 }
 .btn-primary:hover { background-color: #219150; }
 
 /* Navbar */
 .navbar {
-    background: var(--nav-bg);
-    box-shadow: 0 2px 5px var(--shadow-color);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    height: 70px;
-    display: flex;
-    align-items: center;
+    background: var(--nav-bg); box-shadow: 0 2px 5px var(--shadow-color);
+    position: fixed; width: 100%; top: 0; z-index: 1000; height: 70px;
+    display: flex; align-items: center;
 }
 .navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+    display: flex; justify-content: space-between; align-items: center; width: 100%;
 }
 
-/* Logo Styles */
+/* Logo (Meta Business Suite Style) */
 .logo {
-    display: flex;
-    align-items: center;
-    font-family: 'Outfit', sans-serif;
-    font-weight: 600;
-    font-style: normal;
-    font-size: 1.6rem; 
-    color: #219150; 
-    text-transform: none;
-    letter-spacing: -0.5px;
+    display: flex; align-items: center;
+    font-family: 'Outfit', sans-serif; 
+    font-weight: 500; font-style: normal; font-size: 1.6rem;
+    color: var(--text-color);
+    text-transform: none; letter-spacing: -0.5px;
 }
-.logo img { height: 40px; margin-right: 12px; }
+.logo img { height: 35px; margin-right: 12px; }
 
 .nav-links { display: flex; gap: 20px; align-items: center; }
 .nav-links a { font-weight: 500; font-size: 0.9rem; color: var(--text-color); }
-
-/* Theme Toggle Button */
-.theme-toggle {
-    cursor: pointer;
-    font-size: 1.2rem;
-    margin-left: 20px;
-    color: var(--text-color);
-}
-
+.theme-toggle { cursor: pointer; font-size: 1.2rem; margin-left: 20px; color: var(--text-color); }
 .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-color); }
 
 /* Hero Section */
 .hero {
     height: 100vh;
-    background: url('banner.jpg') no-repeat center center/cover;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
+    background: url('Gallery/banner/banner.jpg') no-repeat center center/cover;
+    position: relative; display: flex; align-items: center; justify-content: center;
+    text-align: center; color: white;
 }
 .hero-overlay {
-    background: rgba(0, 0, 0, 0.5);
-    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5); width: 100%; height: 100%;
     display: flex; align-items: center; justify-content: center;
 }
-.hero-content h1 { font-family: 'Outfit', sans-serif;font-size: 3.5rem; margin-bottom: 20px; }
+.hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; }
 .hero-content p { font-size: 1.2rem; margin-bottom: 30px; }
-
 .btn-large {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 15px 30px;
-    border-radius: 5px;
-    font-size: 1.1rem;
-    border: none; cursor: pointer;
+    background-color: var(--primary-color); color: white; padding: 15px 30px;
+    border-radius: 5px; font-size: 1.1rem; border: none; cursor: pointer;
 }
 .btn-large:hover { transform: scale(1.05); }
 
-/* About & Stats */
+/* Stats Banner */
+.stats-banner {
+    background-color: var(--primary-color); color: white;
+    padding: 40px 0; position: relative; z-index: 10;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.stats-banner .container {
+    display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 30px;
+}
+.stat-item { text-align: center; flex: 1; min-width: 200px; }
+.stat-item i {
+    font-size: 2.5rem; margin-bottom: 15px; opacity: 0.9;
+    background: rgba(255, 255, 255, 0.2); padding: 20px;
+    border-radius: 50%; width: 80px; height: 80px;
+    display: inline-flex; align-items: center; justify-content: center;
+}
+.stat-item h2 {
+    font-size: 2.5rem; font-weight: 700; margin-bottom: 5px; font-family: 'Outfit', sans-serif;
+}
+.stat-item p {
+    font-size: 1.1rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9;
+}
+body.dark-mode .stats-banner { background-color: #1e5631; }
+
+/* About & Gallery */
 .about-grid { display: flex; flex-wrap: wrap; gap: 40px; align-items: center; }
 .about-text { flex: 1; }
 .about-stats { flex: 1; display: flex; justify-content: space-around; }
 .stat-box { text-align: center; }
 .stat-box h3 { font-size: 2.5rem; color: var(--primary-color); }
 
-/* Gallery */
 .township-gallery {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 50px;
 }
 .township-gallery img {
-    width: 100%; height: 200px; object-fit: cover;
-    border-radius: 8px;
-    border: 3px solid var(--primary-color); /* Green border */
+    width: 100%; height: 200px; object-fit: cover; border-radius: 8px;
+    border: 3px solid var(--primary-color);
     box-shadow: 0 4px 6px var(--shadow-color);
 }
 
-/* Amenities */
+/* =========================================
+   AMENITIES GRID
+   ========================================= */
 .amenities-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
 }
+
+/* =========================================
+   AMENITY CARD
+   ========================================= */
 .amenity-card {
-    background: var(--card-bg); 
-    padding: 30px; text-align: center; border-radius: 8px;
+    background: var(--card-bg);
+    padding: 0;
+    text-align: center;
+    border-radius: 8px;
     box-shadow: 0 5px 15px var(--shadow-color);
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+}
+
+/* =========================================
+   SLIDER CONTAINER
+   ========================================= */
+.amenity-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* =========================================
+   COMMON STYLES (OVERLAP BOTH)
+   ========================================= */
+.amenity-content,
+.amenity-slider img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+
+    animation-duration: 7s;      /* 3s hold + 1s fade + 3s hold */
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+/* =========================================
+   TEXT SLIDE
+   ========================================= */
+.amenity-content {
+    background: var(--card-bg);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    animation-name: showText;
+}
+
+/* Text styling */
+.amenity-content i {
+    font-size: 2.5rem;
+    color: var(--primary-color) !important;
+    margin-bottom: 15px;
+}
+
+.amenity-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+body.dark-mode .amenity-content h3 {
     color: var(--text-color);
 }
-.amenity-card i { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px; }
+
+.amenity-content p {
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+/* =========================================
+   IMAGE SLIDE
+   ========================================= */
+.amenity-slider img {
+    object-fit: cover;
+    animation-name: showImage;
+}
+
+/* =========================================
+   PAUSE ON HOVER
+   ========================================= 
+.amenity-card:hover .amenity-content,
+.amenity-card:hover .amenity-slider img {
+    animation-play-state: paused;
+}*/
+
+/* =========================================
+   ANIMATION LOGIC (0.2s FADE)
+   ========================================= */
+@keyframes showText {
+    0% {
+        opacity: 1;
+    }
+    49% {
+        opacity: 1;   /* hold text */
+    }
+    51% {
+        opacity: 0;   /* 0.2s fade out */
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes showImage {
+    0% {
+        opacity: 0;
+    }
+    49% {
+        opacity: 0;
+    }
+    51% {
+        opacity: 1;   /* 0.2s fade in */
+    }
+    100% {
+        opacity: 1;   /* hold image */
+    }
+}
 
 /* Location */
 .location-list li {
-    background: var(--card-bg);
-    margin-bottom: 15px; padding: 15px;
-    border-left: 5px solid var(--primary-color);
-    box-shadow: 0 2px 5px var(--shadow-color);
-    color: var(--text-color);
+    background: var(--card-bg); margin-bottom: 15px; padding: 15px;
+    border-left: 5px solid var(--primary-color); box-shadow: 0 2px 5px var(--shadow-color);
 }
 .location-list i { color: var(--primary-color); margin-right: 10px; width: 25px; }
 
 /* Footer */
-.footer {
-    background: #2c3e50;
-    color: white;
-    text-align: center; padding: 60px 0 20px;
-}
+.footer { background: #2c3e50; color: white; text-align: center; padding: 60px 0 20px; }
 .contact-form { max-width: 600px; margin: 30px auto; display: flex; flex-direction: column; gap: 15px; }
-.contact-form input {
-    padding: 15px; border: none; border-radius: 5px; font-size: 1rem;
-}
+.contact-form input { padding: 15px; border: none; border-radius: 5px; font-size: 1rem; }
 
 /* Modal */
 .modal {
@@ -202,11 +288,9 @@ ul { list-style: none; }
     background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px);
 }
 .modal-content {
-    background-color: var(--card-bg);
-    color: var(--text-color);
+    background-color: var(--card-bg); color: var(--text-color);
     margin: 10% auto; padding: 30px; border: 1px solid var(--border-color);
-    width: 90%; max-width: 500px; border-radius: 10px;
-    position: relative; text-align: center;
+    width: 90%; max-width: 500px; border-radius: 10px; position: relative; text-align: center;
 }
 .close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
 .form-group { margin-bottom: 15px; }
@@ -220,116 +304,19 @@ ul { list-style: none; }
 
     .menu-toggle { display: block; cursor: pointer; }
 
-    /* Mobile Menu Styles */
     .nav-links {
-        display: none; /* Hidden by default */
-        position: absolute;
-        top: 70px; 
-        left: 0;
-        width: 100%;
-        background-color: var(--nav-bg); 
-        flex-direction: column;
-        
-        /* UPDATED: Aligns items to the left side */
-        align-items: flex-start; 
-        
-        /* UPDATED: Adds padding so text isn't stuck to the edge */
-        padding: 20px; 
-        
-        box-shadow: 0 10px 10px var(--shadow-color);
-        border-top: 1px solid var(--border-color);
+        display: none; position: absolute; top: 70px; left: 0; width: 100%;
+        background-color: var(--nav-bg); flex-direction: column;
+        align-items: flex-start; padding: 20px;
+        box-shadow: 0 10px 10px var(--shadow-color); border-top: 1px solid var(--border-color);
     }
-
-    .nav-links.active { display: flex; } /* Shown when clicked */
+    .nav-links.active { display: flex; }
 
     .nav-links li {
-        /* UPDATED: Reduced margin (Space between items) */
-        margin: 8px 0; 
-        
-        /* UPDATED: Left align text */
-        text-align: left; 
-        width: 100%;
-        
-        /* Optional: Adds a thin line between items for a cleaner look */
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 8px;
+        margin: 8px 0; text-align: left; width: 100%;
+        border-bottom: 1px solid var(--border-color); padding-bottom: 8px;
     }
-    
-    /* Remove border from the last item (Enquire button) */
-    .nav-links li:last-child {
-        border-bottom: none;
-    }
-
-    /* Make the Enquire button full width on mobile */
-    .nav-links .btn-primary {
-        display: block;
-        width: 100%;
-        text-align: center;
-    }
-
-    /* Adjust Toggle Button (Sun/Moon) position */
-    .theme-toggle { 
-        margin-left: 0; 
-        margin-top: 5px; 
-        font-size: 1.5rem; 
-    }
-}
-
-/* --- Stats Banner Styles --- */
-.stats-banner {
-    background-color: var(--primary-color); /* Uses your Green theme */
-    color: white;
-    padding: 35px 0;
-    position: relative;
-    z-index: 10;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.stats-banner .container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 25px;
-}
-
-.stat-item {
-    text-align: center;
-    flex: 1;
-    min-width: 200px;
-}
-
-.stat-item i {
-    font-size: 2.2rem;
-    margin-bottom: 15px;
-    opacity: 0.9;
-    background: rgba(255, 255, 255, 0.2); /* Subtle circle effect behind icon */
-    padding: 20px;
-    border-radius: 50%;
-    width: 70px;
-    height: 70px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.stat-item h2 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 5px;
-    font-family: 'Outfit', sans-serif; /* Matches your Logo font */
-}
-
-.stat-item p {
-    font-size: 1.1rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    opacity: 0.9;
-}
-
-/* Dark Mode Adjustment for Stats Banner */
-/* We keep the background green, but ensure text stays white */
-body.dark-mode .stats-banner {
-    background-color: #1e5631; /* Slightly darker green for dark mode */
+    .nav-links li:last-child { border-bottom: none; }
+    .nav-links .btn-primary { display: block; width: 100%; text-align: center; }
+    .theme-toggle { margin-left: 0; margin-top: 5px; font-size: 1.5rem; }
 }

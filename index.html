@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harit City</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <nav class="navbar">
         <div class="container">
             <a href="#" class="logo">
-                <img src="logo.png" alt="Harit City Logo">
+                <img src="Gallery/logo/logo.png" alt="Harit City Logo">
                 Harit City
             </a>
 
@@ -37,7 +39,6 @@
         <div class="hero-overlay">
             <div class="hero-content">
                 <h1>Welcome to Harit City</h1>
-                <!--<p>Premium Residential Plots near Jewar Airport & Yamuna Expressway</p>-->
                 <button onclick="openModal()" class="btn-large">Download Brochure</button>
             </div>
         </div>
@@ -47,17 +48,17 @@
         <div class="container">
             <div class="stat-item">
                 <i class="fas fa-ruler-combined"></i>
-                <h2 class="counter" data-start="5" data-target="105">0</h2>
+                <h2 class="counter" data-start="5" data-target="105">5</h2>
                 <p>Acres Township</p>
             </div>
             <div class="stat-item">
                 <i class="fas fa-file-contract"></i>
-                <h2 class="counter" data-start="800" data-target="900">0</h2>
+                <h2 class="counter" data-start="800" data-target="900">800</h2>
                 <p>Registry Done</p>
             </div>
             <div class="stat-item">
                 <i class="fas fa-handshake"></i>
-                <h2 class="counter" data-start="860" data-target="960">0</h2>
+                <h2 class="counter" data-start="860" data-target="960">860</h2>
                 <p>Plots Sold</p>
             </div>
         </div>
@@ -89,10 +90,10 @@
             </div>
 
             <div class="township-gallery">
-                <img src="1.jpg" alt="Harit City View 1">
-                <img src="2.jpg" alt="Harit City View 2">
-                <img src="3.jpg" alt="Harit City View 3">
-                <img src="4.jpg" alt="Harit City View 4">
+                <img src="Gallery/home/1.jpg" alt="Harit City View 1">
+                <img src="Gallery/home/2.jpg" alt="Harit City View 2">
+                <img src="Gallery/home/3.jpg" alt="Harit City View 3">
+                <img src="Gallery/home/4.jpg" alt="Harit City View 4">
             </div>
         </div>
     </section>
@@ -101,36 +102,73 @@
         <div class="container">
             <h2 class="section-title">World-Class Amenities</h2>
             <div class="amenities-grid">
+                
                 <div class="amenity-card">
-                    <i class="fas fa-golf-ball"></i>
-                    <h3>Golf Theme Park</h3>
-                    <p>Exclusive recreational area for golf enthusiasts.</p>
+                    <div class="amenity-slider">
+                        <div class="amenity-content">
+                            <i class="fas fa-golf-ball"></i>
+                            <h3>Golf Theme Park</h3>
+                            <p>Exclusive recreational area for golf enthusiasts.</p>
+                        </div>
+                        <img src="Gallery/images/golf.jpg" alt="Golf">
+                    </div>
                 </div>
+
                 <div class="amenity-card">
-                    <i class="fas fa-tree"></i>
-                    <h3>5 Central Parks</h3>
-                    <p>Expansive green lungs for fresh air and morning walks.</p>
+                    <div class="amenity-slider">
+                        <div class="amenity-content">
+                            <i class="fas fa-tree"></i>
+                            <h3>5 Central Parks</h3>
+                            <p>Expansive green lungs for fresh air.</p>
+                        </div>
+                        <img src="Gallery/images/park.jpg" alt="Park">
+                    </div>
                 </div>
+
                 <div class="amenity-card">
-                    <i class="fas fa-gopuram"></i>
-                    <h3>Grand Temple</h3>
-                    <p>A spiritual center within the community.</p>
+                    <div class="amenity-slider">
+                        <div class="amenity-content">
+                            <i class="fas fa-gopuram"></i>
+                            <h3>Grand Temple</h3>
+                            <p>A spiritual center within the community.</p>
+                        </div>
+                        <img src="Gallery/images/temple.jpg" alt="Temple">
+                    </div>
                 </div>
+
                 <div class="amenity-card">
-                    <i class="fas fa-building"></i>
-                    <h3>Clubhouse</h3>
-                    <p>Luxury clubhouse with gym, pool, and indoor games.</p>
+                    <div class="amenity-slider">
+                        <div class="amenity-content">
+                            <i class="fas fa-building"></i>
+                            <h3>Clubhouse</h3>
+                            <p>Luxury clubhouse with gym and pool.</p>
+                        </div>
+                        <img src="Gallery/images/clubhouse.jpg" alt="Clubhouse">
+                    </div>
                 </div>
+
                 <div class="amenity-card">
-                    <i class="fas fa-users"></i>
-                    <h3>Community Centre</h3>
-                    <p>Space for social gatherings and events.</p>
+                    <div class="amenity-slider">
+                        <div class="amenity-content">
+                            <i class="fas fa-users"></i>
+                            <h3>Community Centre</h3>
+                            <p>Space for social gatherings and events.</p>
+                        </div>
+                        <img src="Gallery/images/cc.jpg" alt="Community Center">
+                    </div>
                 </div>
+
                 <div class="amenity-card">
-                    <i class="fas fa-store"></i>
-                    <h3>Central Market</h3>
-                    <p>Daily convenience shopping within the township.</p>
+                    <div class="amenity-slider">
+                        <div class="amenity-content">
+                            <i class="fas fa-store"></i>
+                            <h3>Central Market</h3>
+                            <p>Daily convenience shopping.</p>
+                        </div>
+                        <img src="Gallery/images/market.jpg" alt="Market">
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>

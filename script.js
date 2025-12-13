@@ -6,15 +6,13 @@ const FIELD_MAPPING = {
     name: 'entry.2005620554',    
     mobile: 'entry.1166974658',  
     email: 'entry.1045781291',   
-    city: 'entry.1065046570',   
-    
-    // IMPORTANT: Replace 'entry.YOUR_NEW_SOURCE_ID' with the number you got for the "Source" column
-    source: 'entry.YOUR_NEW_SOURCE_ID' 
+    city: 'entry.1065046570',
+    source: 'entry.562185822' // <--- UPDATED: Source ID added successfully
 };
 
 // ---------------------------------------------------------
 
-// --- 1. Dark Mode Logic (System Sync + Manual Toggle) ---
+// 1. Dark Mode Logic
 const toggleBtn = document.getElementById('theme-toggle');
 const body = document.body;
 
@@ -27,8 +25,6 @@ function applyTheme(isDark) {
         toggleBtn.classList.replace('fa-sun', 'fa-moon');
     }
 }
-
-// Initial Check
 const savedTheme = localStorage.getItem('theme');
 const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -36,24 +32,19 @@ if (savedTheme === 'dark') { applyTheme(true); }
 else if (savedTheme === 'light') { applyTheme(false); } 
 else { applyTheme(systemPrefersDark.matches); }
 
-// Toggle Click
 toggleBtn.addEventListener('click', () => {
     const isDarkModeNow = body.classList.contains('dark-mode');
     if (isDarkModeNow) {
-        applyTheme(false);
-        localStorage.setItem('theme', 'light');
+        applyTheme(false); localStorage.setItem('theme', 'light');
     } else {
-        applyTheme(true);
-        localStorage.setItem('theme', 'dark');
+        applyTheme(true); localStorage.setItem('theme', 'dark');
     }
 });
-
-// System Change Listener
 systemPrefersDark.addEventListener('change', (e) => {
     if (!localStorage.getItem('theme')) { applyTheme(e.matches); }
 });
 
-// --- 2. Mobile Menu Logic ---
+// 2. Mobile Menu Logic
 const hamburger = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('.nav-links');
 
@@ -61,44 +52,75 @@ hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('active');
     const icon = hamburger.querySelector('i');
     if (navMenu.classList.contains('active')) {
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-times');
+        icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
     } else {
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
+        icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
     }
 });
-
-// Close Menu on Link Click
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
         navMenu.classList.remove('active');
         const icon = hamburger.querySelector('i');
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
+        icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
     });
 });
 
-// --- 3. Smooth scrolling ---
+// 3. Stats Counter Animation
+const statsSection = document.querySelector('.stats-banner');
+const counters = document.querySelectorAll('.counter');
+let hasStarted = false; 
+
+function startCounters() {
+    counters.forEach(counter => {
+        const start = +counter.getAttribute('data-start');
+        const target = +counter.getAttribute('data-target');
+        counter.innerText = start;
+        const increment = (target - start) / 100; 
+
+        function updateCount() {
+            const count = +counter.innerText.replace('+', ''); 
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(updateCount, 20); 
+            } else {
+                counter.innerText = target + "+";
+            }
+        }
+        updateCount();
+    });
+}
+const statsObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !hasStarted) {
+        startCounters(); hasStarted = true; 
+    }
+}, { threshold: 0.5 }); 
+if (statsSection) { statsObserver.observe(statsSection); }
+
+// 4. Mobile Amenity Tap Logic
+document.querySelectorAll('.amenity-card').forEach(card => {
+    card.addEventListener('click', () => {
+        card.classList.toggle('mobile-active');
+    });
+});
+
+// 5. Smooth Scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         if (this.getAttribute('href') !== '#') {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
         }
     });
 });
 
-// --- 4. Modal Logic ---
+// 6. Modal Logic
 function openModal() { document.getElementById("brochureModal").style.display = "block"; }
 function closeModal() { document.getElementById("brochureModal").style.display = "none"; }
 window.onclick = function(event) {
     if (event.target == document.getElementById("brochureModal")) { closeModal(); }
 }
 
-// --- 5. UNIVERSAL FUNCTION TO SEND DATA TO GOOGLE ---
+// 7. Form Submission Logic
 function sendToGoogle(name, mobile, email, city, source) {
     const formData = new FormData();
     formData.append(FIELD_MAPPING.name, name);
@@ -108,115 +130,57 @@ function sendToGoogle(name, mobile, email, city, source) {
     formData.append(FIELD_MAPPING.source, source);
 
     return fetch(GOOGLE_FORM_URL, {
-        method: 'POST',
-        mode: 'no-cors', 
-        body: formData
+        method: 'POST', mode: 'no-cors', body: formData
     });
 }
 
-// --- 6. HANDLE BROCHURE FORM ---
+// Handle Brochure Download Form
 document.getElementById('brochureForm').addEventListener('submit', function(e) {
     e.preventDefault(); 
     const btn = this.querySelector('button');
     const originalText = btn.innerText;
-    btn.innerText = "Processing...";
-    btn.disabled = true;
+    btn.innerText = "Processing..."; btn.disabled = true;
 
     const name = document.getElementById('name').value;
     const mobile = document.getElementById('mobile').value;
     const email = document.getElementById('email').value;
     const city = document.getElementById('city').value;
 
+    // We pass "Brochure Download" as the source
     sendToGoogle(name, mobile, email, city, "Brochure Download")
     .then(() => {
         alert("Thank you " + name + "! Your details are saved. Downloading brochure...");
         
+        // Triggers the PDF download
         var link = document.createElement('a');
         link.href = 'brochure.pdf'; 
         link.download = 'HaritCity_Brochure.pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        closeModal();
-        this.reset();
+        document.body.appendChild(link); link.click(); document.body.removeChild(link);
+        
+        closeModal(); this.reset();
     })
     .catch(err => alert("Error saving details."))
-    .finally(() => {
-        btn.innerText = originalText;
-        btn.disabled = false;
-    });
+    .finally(() => { btn.innerText = originalText; btn.disabled = false; });
 });
 
-// --- 7. HANDLE FOOTER ENQUIRY FORM ---
+// Handle Footer Enquiry Form
 document.getElementById('enquiryForm').addEventListener('submit', function(e) {
     e.preventDefault(); 
     const btn = this.querySelector('button');
     const originalText = btn.innerText;
-    btn.innerText = "Sending...";
-    btn.disabled = true;
+    btn.innerText = "Sending..."; btn.disabled = true;
 
     const name = document.getElementById('enq-name').value;
     const mobile = document.getElementById('enq-mobile').value;
     const email = document.getElementById('enq-email').value;
     const city = document.getElementById('enq-city').value;
 
+    // We pass "Footer Enquiry" as the source
     sendToGoogle(name, mobile, email, city, "Footer Enquiry")
     .then(() => {
         alert("Thank you " + name + "! We have received your enquiry from " + city + ".");
         this.reset();
     })
     .catch(err => alert("Something went wrong."))
-    .finally(() => {
-        btn.innerText = originalText;
-        btn.disabled = false;
-    });
+    .finally(() => { btn.innerText = originalText; btn.disabled = false; });
 });
-// --- Stats Counter Animation (Custom Start Points) ---
-
-const statsSection = document.querySelector('.stats-banner');
-const counters = document.querySelectorAll('.counter');
-let hasStarted = false; 
-
-function startCounters() {
-    counters.forEach(counter => {
-        // Get the start and target values from HTML
-        const start = +counter.getAttribute('data-start');
-        const target = +counter.getAttribute('data-target');
-        
-        // Set the initial number visible to the user
-        counter.innerText = start;
-
-        // Calculate increment step to finish in approx 2 seconds (100 frames)
-        // We calculate the difference (e.g. 900 - 800 = 100) and divide by 100 steps
-        const increment = (target - start) / 15; 
-
-        function updateCount() {
-            // Get current value (removing any + signs)
-            const count = +counter.innerText.replace('+', ''); 
-            
-            if (count < target) {
-                // Add increment
-                counter.innerText = Math.ceil(count + increment);
-                setTimeout(updateCount, 20); // Run every 20ms
-            } else {
-                // Finish exactly on target
-                counter.innerText = target + "+";
-            }
-        }
-        
-        updateCount();
-    });
-}
-
-// Observer: Triggers animation when section scrolls into view
-const statsObserver = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting && !hasStarted) {
-        startCounters();
-        hasStarted = true; 
-    }
-}, { threshold: 0.5 }); 
-
-if (statsSection) {
-    statsObserver.observe(statsSection);
-}
