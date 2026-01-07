@@ -35,6 +35,14 @@ body {
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 
+/* Image Optimization Support */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    content-visibility: auto; 
+}
+
 /* Utilities */
 .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 .section { padding: 80px 0; }
@@ -52,37 +60,76 @@ ul { list-style: none; }
 }
 .btn-primary:hover { background-color: #219150; }
 
-/* Navbar */
+/* =========================================
+   MODIFIED NAVBAR (Transparent to Sticky)
+   ========================================= */
 .navbar {
-    background: var(--nav-bg); box-shadow: 0 2px 5px var(--shadow-color);
+    background: transparent; /* Initially transparent */
+    box-shadow: none;        /* No shadow initially */
     position: fixed; width: 100%; top: 0; z-index: 1000; height: 70px;
     display: flex; align-items: center;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
 }
+
+/* The class added via JS when scrolling down */
+.navbar.scrolled {
+    background: var(--nav-bg);
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
 .navbar .container {
     display: flex; justify-content: space-between; align-items: center; width: 100%;
 }
 
-/* Logo (Meta Business Suite Style) */
+/* Logo */
 .logo {
     display: flex; align-items: center;
     font-family: 'Outfit', sans-serif; 
     font-weight: 500; font-style: normal; font-size: 1.6rem;
-    color: var(--text-color);
+    color: white; /* White text on Transparent/Hero background */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Readability on image */
     text-transform: none; letter-spacing: -0.5px;
+    transition: color 0.3s ease;
+}
+.navbar.scrolled .logo {
+    color: var(--text-color); /* Turns dark on scroll */
+    text-shadow: none;
 }
 .logo img { height: 35px; margin-right: 12px; }
 
+/* Nav Links */
 .nav-links { display: flex; gap: 20px; align-items: center; }
-.nav-links a { font-weight: 500; font-size: 0.9rem; color: var(--text-color); }
-.theme-toggle { cursor: pointer; font-size: 1.2rem; margin-left: 20px; color: var(--text-color); }
-.menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-color); }
+
+.nav-links a { 
+    font-weight: 500; font-size: 0.9rem; 
+    color: white; /* White links on transparent header */
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.navbar.scrolled .nav-links a {
+    color: var(--text-color); /* Dark links on scroll */
+    text-shadow: none;
+}
+
+.theme-toggle { 
+    cursor: pointer; font-size: 1.2rem; margin-left: 20px; 
+    color: white; 
+}
+.navbar.scrolled .theme-toggle { color: var(--text-color); }
+
+.menu-toggle { 
+    display: none; font-size: 1.5rem; cursor: pointer; 
+    color: white; 
+}
+.navbar.scrolled .menu-toggle { color: var(--text-color); }
 
 /* Hero Section */
 .hero {
     height: 100vh;
-    background: url('Gallery/banner/banner.jpg') no-repeat center center/cover;
+    background: url('Gallery/banner/banner.webp') no-repeat center center/cover;
     position: relative; display: flex; align-items: center; justify-content: center;
     text-align: center; color: white;
+    margin-top: 0; 
 }
 .hero-overlay {
     background: rgba(0, 0, 0, 0.5); width: 100%; height: 100%;
@@ -145,128 +192,39 @@ body.dark-mode .stats-banner { background-color: #1e5631; }
     gap: 30px;
 }
 
-/* =========================================
-   AMENITY CARD
-   ========================================= */
 .amenity-card {
     background: var(--card-bg);
-    padding: 0;
-    text-align: center;
-    border-radius: 8px;
+    padding: 0; text-align: center; border-radius: 8px;
     box-shadow: 0 5px 15px var(--shadow-color);
-    position: relative;
-    overflow: hidden;
-    height: 300px;
+    position: relative; overflow: hidden; height: 300px;
 }
 
-/* =========================================
-   SLIDER CONTAINER
-   ========================================= */
-.amenity-slider {
-    position: relative;
-    width: 100%;
-    height: 100%;
+.amenity-slider { position: relative; width: 100%; height: 100%; }
+
+.amenity-content, .amenity-slider img {
+    position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0;
+    animation-duration: 7s; animation-timing-function: linear; animation-iteration-count: infinite;
 }
 
-/* =========================================
-   COMMON STYLES (OVERLAP BOTH)
-   ========================================= */
-.amenity-content,
-.amenity-slider img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-
-    animation-duration: 7s;      /* 3s hold + 1s fade + 3s hold */
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-/* =========================================
-   TEXT SLIDE
-   ========================================= */
 .amenity-content {
-    background: var(--card-bg);
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
+    background: var(--card-bg); padding: 30px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
     animation-name: showText;
 }
+.amenity-content i { font-size: 2.5rem; color: var(--primary-color) !important; margin-bottom: 15px; }
+.amenity-content h3 { font-size: 1.5rem; margin-bottom: 10px; color: #2c3e50; }
+body.dark-mode .amenity-content h3 { color: var(--text-color); }
+.amenity-content p { color: var(--text-color); font-size: 0.95rem; }
 
-/* Text styling */
-.amenity-content i {
-    font-size: 2.5rem;
-    color: var(--primary-color) !important;
-    margin-bottom: 15px;
-}
+.amenity-slider img { object-fit: cover; animation-name: showImage; }
 
-.amenity-content h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #2c3e50;
-}
-
-body.dark-mode .amenity-content h3 {
-    color: var(--text-color);
-}
-
-.amenity-content p {
-    color: var(--text-color);
-    font-size: 0.95rem;
-}
-
-/* =========================================
-   IMAGE SLIDE
-   ========================================= */
-.amenity-slider img {
-    object-fit: cover;
-    animation-name: showImage;
-}
-
-/* =========================================
-   PAUSE ON HOVER
-   ========================================= 
-.amenity-card:hover .amenity-content,
-.amenity-card:hover .amenity-slider img {
-    animation-play-state: paused;
-}*/
-
-/* =========================================
-   ANIMATION LOGIC (0.2s FADE)
-   ========================================= */
 @keyframes showText {
-    0% {
-        opacity: 1;
-    }
-    49% {
-        opacity: 1;   /* hold text */
-    }
-    51% {
-        opacity: 0;   /* 0.2s fade out */
-    }
-    100% {
-        opacity: 0;
-    }
+    0% { opacity: 1; } 49% { opacity: 1; }
+    51% { opacity: 0; } 100% { opacity: 0; }
 }
-
 @keyframes showImage {
-    0% {
-        opacity: 0;
-    }
-    49% {
-        opacity: 0;
-    }
-    51% {
-        opacity: 1;   /* 0.2s fade in */
-    }
-    100% {
-        opacity: 1;   /* hold image */
-    }
+    0% { opacity: 0; } 49% { opacity: 0; }
+    51% { opacity: 1; } 100% { opacity: 1; }
 }
 
 /* Location */
@@ -296,7 +254,14 @@ body.dark-mode .amenity-content h3 {
 .form-group { margin-bottom: 15px; }
 .form-group input { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 5px; background: var(--bg-color); color: var(--text-color); }
 
-/* Responsive & Mobile Menu */
+/* Hide Mobile bar on Desktop */
+.mobile-lead-bar {
+    display: none; 
+}
+
+/* =========================================
+   RESPONSIVE & MOBILE
+   ========================================= */
 @media (max-width: 768px) {
     .hero-content h1 { font-size: 2.5rem; }
     .about-grid { flex-direction: column; }
@@ -304,23 +269,137 @@ body.dark-mode .amenity-content h3 {
 
     .menu-toggle { display: block; cursor: pointer; }
 
+    /* Fix Nav dropdown for Transparent Header */
     .nav-links {
         display: none; position: absolute; top: 70px; left: 0; width: 100%;
-        background-color: var(--nav-bg); flex-direction: column;
-        align-items: flex-start; padding: 20px;
+        background-color: var(--nav-bg); 
+        flex-direction: column; align-items: flex-start; padding: 20px;
         box-shadow: 0 10px 10px var(--shadow-color); border-top: 1px solid var(--border-color);
     }
     .nav-links.active { display: flex; }
-
+    .nav-links a { color: var(--text-color); text-shadow: none; }
+    
     .nav-links li {
         margin: 8px 0; text-align: left; width: 100%;
         border-bottom: 1px solid var(--border-color); padding-bottom: 8px;
     }
     .nav-links li:last-child { border-bottom: none; }
     .nav-links .btn-primary { display: block; width: 100%; text-align: center; }
+    
     .theme-toggle { margin-left: 0; margin-top: 5px; font-size: 1.5rem; }
+
+    /* =========================================
+       ANIMATED VERTICAL SIDE TABS
+       ========================================= */
+    .mobile-lead-bar {
+        display: flex;
+        flex-direction: column;         /* Stack them vertically */
+        align-items: flex-end;          /* Align to the right edge */
+        position: fixed;
+        bottom: 20%;                    /* Positioned comfortably up from bottom */
+        right: 0;                       /* Stick flush to the right edge */
+        z-index: 9999;
+        gap: 0;                         /* Remove gap so they touch */
+        background: transparent;
+        padding: 0;
+        width: auto;
+        /* Drop Shadow on group avoids lines between buttons */
+        filter: drop-shadow(-4px 0 8px rgba(0,0,0,0.2)); 
+        
+        /* Animation: Nudge whole bar periodically */
+        animation: sticky-nudge 5s infinite ease-in-out;
+    }
+    
+    .lead-btn {
+        writing-mode: vertical-rl;      /* Makes text run vertically */
+        text-orientation: mixed;        /* Rotates text sideways */
+        transform: rotate(180deg);      /* Flips it to read Bottom-to-Top */
+        
+        display: flex; 
+        justify-content: center; 
+        align-items: center;
+        gap: 8px;                       /* Space between icon and text */
+
+        font-weight: 600; 
+        font-size: 0.95rem;
+        color: white; 
+        border: none; 
+        cursor: pointer;
+        
+        /* Reset Radius */
+        border-radius: 0; 
+        
+        padding: 20px 8px;            
+        min-height: 110px;             
+        margin: 0;
+        position: relative;             /* For Sheen */
+        overflow: hidden;               /* Keep Sheen inside */
+        
+        transition: transform 0.2s ease;
+        font-family: 'Outfit', sans-serif;
+    }
+
+    /* Glossy Sheen Effect */
+    .lead-btn::after {
+        content: '';
+        position: absolute;
+        top: 0; left: -100%;
+        width: 100%; height: 100%;
+        background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.4), transparent);
+        transform: skewY(-25deg);
+        animation: sheen-flow 4s infinite;
+    }
+
+    /* Rounding logic for top/bottom tabs */
+    .lead-btn:first-child { border-radius: 0 0 8px 0; }
+    .lead-btn:last-child { border-radius: 0 8px 0 0; }
+    
+    .lead-btn:active { transform: rotate(180deg) translateX(5px); }
+    
+    /* Icon Animations */
+    .lead-btn i { 
+        margin: 0; font-size: 1.2rem; 
+        transform: rotate(90deg); 
+    }
+    
+    .lead-btn.call i { animation: icon-shake 3s infinite; }
+    .lead-btn.whatsapp i { animation: icon-pulse 3s infinite; }
+
+    .lead-btn.call { background: linear-gradient(to bottom, #2980b9, #3498db); }
+    .lead-btn.whatsapp { background: linear-gradient(to bottom, #128C7E, #25D366); }
+
+    body { padding-bottom: 0; }
+}
+
+/* =========================================
+   ANIMATION KEYFRAMES
+   ========================================= */
+
+@keyframes sticky-nudge {
+    0%, 85%, 100% { transform: translateX(0); }
+    90% { transform: translateX(-10px); }
+    95% { transform: translateX(0); }
+}
+
+@keyframes sheen-flow {
+    0%, 80% { left: -150%; opacity: 0; }
+    85% { opacity: 1; }
+    100% { left: 150%; opacity: 0; }
+}
+
+@keyframes icon-shake {
+    0%, 90%, 100% { transform: rotate(90deg); }
+    92% { transform: rotate(80deg); }
+    94% { transform: rotate(100deg); }
+    96% { transform: rotate(80deg); }
+    98% { transform: rotate(100deg); }
+}
+
+@keyframes icon-pulse {
+    0%, 90%, 100% { transform: rotate(90deg) scale(1); }
+    95% { transform: rotate(90deg) scale(1.3); }
 }
 
 #contact {
-    scroll-margin-top: 90px; /* Navbar is 70px, this adds 20px breathing room */
+    scroll-margin-top: 90px; 
 }

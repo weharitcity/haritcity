@@ -7,7 +7,7 @@ const FIELD_MAPPING = {
     mobile: 'entry.1166974658',  
     email: 'entry.1045781291',   
     city: 'entry.1065046570',
-    source: 'entry.562185822' // <--- UPDATED: Source ID added successfully
+    source: 'entry.562185822'
 };
 
 // ---------------------------------------------------------
@@ -44,7 +44,17 @@ systemPrefersDark.addEventListener('change', (e) => {
     if (!localStorage.getItem('theme')) { applyTheme(e.matches); }
 });
 
-// 2. Mobile Menu Logic
+// 2. Navbar Scroll Logic (NEW: Handles Transparent to Sticky)
+const navbar = document.querySelector('.navbar');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// 3. Mobile Menu Logic
 const hamburger = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('.nav-links');
 
@@ -53,10 +63,17 @@ hamburger.addEventListener('click', () => {
     const icon = hamburger.querySelector('i');
     if (navMenu.classList.contains('active')) {
         icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
+        // Optional: Force navbar background to be solid when menu is open
+        navbar.classList.add('scrolled');
     } else {
         icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
+        // Only remove background if we are at the top of the page
+        if (window.scrollY <= 50) {
+            navbar.classList.remove('scrolled');
+        }
     }
 });
+
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
         navMenu.classList.remove('active');
@@ -65,7 +82,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     });
 });
 
-// 3. Stats Counter Animation
+// 4. Stats Counter Animation
 const statsSection = document.querySelector('.stats-banner');
 const counters = document.querySelectorAll('.counter');
 let hasStarted = false; 
@@ -96,14 +113,14 @@ const statsObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 }); 
 if (statsSection) { statsObserver.observe(statsSection); }
 
-// 4. Mobile Amenity Tap Logic
+// 5. Mobile Amenity Tap Logic
 document.querySelectorAll('.amenity-card').forEach(card => {
     card.addEventListener('click', () => {
         card.classList.toggle('mobile-active');
     });
 });
 
-// 5. Smooth Scrolling
+// 6. Smooth Scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         if (this.getAttribute('href') !== '#') {
@@ -113,14 +130,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// 6. Modal Logic
+// 7. Modal Logic
 function openModal() { document.getElementById("brochureModal").style.display = "block"; }
 function closeModal() { document.getElementById("brochureModal").style.display = "none"; }
 window.onclick = function(event) {
     if (event.target == document.getElementById("brochureModal")) { closeModal(); }
 }
 
-// 7. Form Submission Logic
+// 8. Form Submission Logic
 function sendToGoogle(name, mobile, email, city, source) {
     const formData = new FormData();
     formData.append(FIELD_MAPPING.name, name);
