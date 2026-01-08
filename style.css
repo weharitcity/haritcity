@@ -176,7 +176,6 @@ body.dark-mode .stats-banner { background-color: #1e5631; }
 /* About & Gallery */
 .about-grid { display: flex; flex-wrap: wrap; gap: 40px; align-items: center; }
 .about-text { flex: 1; }
-.about-stats { flex: 1; display: flex; justify-content: space-around; }
 .stat-box { text-align: center; }
 .stat-box h3 { font-size: 2.5rem; color: var(--primary-color); }
 
