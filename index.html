@@ -7,39 +7,39 @@
     <title>Harit City | Residential Plots near Jewar Airport & Yamuna Expressway</title>
     
     <meta name="description" content="Buy premium residential plots in Harit City, a secure gated township located near Jewar International Airport and Yamuna Expressway. Amenities include Golf Park, Club House, and Temple.">
-    
     <meta name="keywords" content="Harit City, Plots near Jewar Airport, Residential Plots Yamuna Expressway, Land in Greater Noida, Real Estate Investment, Gated Community Plots">
-    
     <meta name="author" content="Harit City">
     <meta name="robots" content="index, follow">
 
     <meta property="og:title" content="Harit City - Premium Plots near Jewar Airport">
     <meta property="og:description" content="Secure gated community with 5 parks, golf theme park, and modern amenities. Registry Open.">
-    <meta property="og:image" content="Gallery\banner\banner.webp"> 
+    <meta property="og:image" content="Gallery/banner/banner.webp"> 
     <meta property="og:type" content="website">
 
     <link rel="icon" type="image/png" href="Gallery/logo/logo.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <link rel="stylesheet" href="style.css">
+    
+    <script src="script.js" defer></script>
 </head>
 <body>
 
     <nav class="navbar">
         <div class="container">
             <a href="#" class="logo">
-                <img src="Gallery/logo/logo.png" alt="Harit City Real Estate Logo">
+                <img src="Gallery/logo/logo.png" alt="Harit City Real Estate Logo" width="35" height="35">
                 Harit City
             </a>
 
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#" onclick="openModal()">Brochure</a></li>
                 <li><a href="#about">Township</a></li>
                 <li><a href="#amenities">Amenities</a></li>
-                <li><a href="#location">Location</a></li>
+                <li><a href="#invest">Why Invest?</a></li> <li><a href="#location">Location</a></li>
+                <li><a href="#" onclick="openModal()">Brochure</a></li> 
                 <li><a href="#contact" class="btn-primary">Enquire Now</a></li>
                 <li><i class="fas fa-moon theme-toggle" id="theme-toggle" title="Toggle Dark Mode"></i></li>
             </ul>
@@ -53,8 +53,16 @@
     <header id="home" class="hero">
         <div class="hero-overlay">
             <div class="hero-content">
-                <h1>Welcome to Harit City</h1>
-                <button onclick="openModal()" class="btn-large">Download Brochure</button>
+                <h1>Premium Plots Near Jewar Airport</h1>
+                <p class="hero-sub">Green Gated Township on Yamuna Expressway</p>
+                
+                <button onclick="openModal()" class="btn-large">Get Price & Brochure</button>
+
+                <ul class="trust-points">
+                    <li><i class="fas fa-check-circle"></i> Instant Registry</li>
+                    <li><i class="fas fa-check-circle"></i> Mutation</li>
+                    <li><i class="fas fa-check-circle"></i> Possession</li>
+                </ul>
             </div>
         </div>
     </header>
@@ -105,15 +113,39 @@
             </div>
 
             <div class="township-gallery">
-                <img src="Gallery/home/1.webp" loading="lazy" alt="Harit City Main Entrance Gate and Wide Roads">
-                <img src="Gallery/home/2.webp" loading="lazy" alt="Green Parks and Landscapes in Harit City">
-                <img src="Gallery/home/3.webp" loading="lazy" alt="Residential Plot View at Yamuna Expressway">
-                <img src="Gallery/home/4.webp" loading="lazy" alt="Harit City Township Overview">
+                <img src="Gallery/home/1.webp" loading="lazy" decoding="async" alt="Harit City Main Entrance Gate">
+                <img src="Gallery/home/2.webp" loading="lazy" decoding="async" alt="Green Parks and Landscapes">
+                <img src="Gallery/home/3.webp" loading="lazy" decoding="async" alt="Residential Plot View">
+                <img src="Gallery/home/4.webp" loading="lazy" decoding="async" alt="Harit City Township Overview">
             </div>
         </div>
     </section>
 
-    <section id="amenities" class="section bg-light">
+    <section id="invest" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Why Invest Here?</h2>
+            <p class="section-subtitle">Strategic advantages that ensure high appreciation.</p>
+            <div class="invest-grid">
+                <div class="invest-card">
+                    <i class="fas fa-plane-arrival"></i>
+                    <h3>Airport Growth</h3>
+                    <p>Located near Jewar International Airport, poised to become Asia's largest aviation hub.</p>
+                </div>
+                <div class="invest-card">
+                    <i class="fas fa-road"></i>
+                    <h3>Connectivity</h3>
+                    <p>Direct access to Yamuna Expressway connecting Delhi, Noida, and Agra seamlessly.</p>
+                </div>
+                <div class="invest-card">
+                    <i class="fas fa-city"></i>
+                    <h3>Future Infrastructure</h3>
+                    <p>Close to upcoming Film City, Tech Zones, and industrial corridors driving demand.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="amenities" class="section">
         <div class="container">
             <h2 class="section-title">World-Class Amenities</h2>
             <div class="amenities-grid">
@@ -123,9 +155,9 @@
                         <div class="amenity-content">
                             <i class="fas fa-golf-ball"></i>
                             <h3>Golf Theme Park</h3>
-                            <p>Exclusive recreational area for golf enthusiasts.</p>
+                            <p>Exclusive recreational area.</p>
                         </div>
-                        <img src="Gallery/images/golf.webp" loading="lazy" alt="Golf Theme Park at Harit City">
+                        <img src="Gallery/images/golf.webp" loading="lazy" decoding="async" alt="Golf Theme Park">
                     </div>
                 </div>
 
@@ -134,9 +166,9 @@
                         <div class="amenity-content">
                             <i class="fas fa-tree"></i>
                             <h3>5 Central Parks</h3>
-                            <p>Expansive green lungs for fresh air.</p>
+                            <p>Expansive green lungs.</p>
                         </div>
-                        <img src="Gallery/images/park.webp" loading="lazy" alt="Lush Green Central Park">
+                        <img src="Gallery/images/park.webp" loading="lazy" decoding="async" alt="Central Park">
                     </div>
                 </div>
 
@@ -145,9 +177,9 @@
                         <div class="amenity-content">
                             <i class="fas fa-gopuram"></i>
                             <h3>Grand Temple</h3>
-                            <p>A spiritual center within the community.</p>
+                            <p>Spiritual center.</p>
                         </div>
-                        <img src="Gallery/images/temple.webp" loading="lazy" alt="Grand Temple in Harit City">
+                        <img src="Gallery/images/temple.webp" loading="lazy" decoding="async" alt="Grand Temple">
                     </div>
                 </div>
 
@@ -156,9 +188,9 @@
                         <div class="amenity-content">
                             <i class="fas fa-building"></i>
                             <h3>Clubhouse</h3>
-                            <p>Luxury clubhouse with gym and pool.</p>
+                            <p>Luxury gym and pool.</p>
                         </div>
-                        <img src="Gallery/images/clubhouse.webp" loading="lazy" alt="Luxury Clubhouse and Swimming Pool">
+                        <img src="Gallery/images/clubhouse.webp" loading="lazy" decoding="async" alt="Clubhouse">
                     </div>
                 </div>
 
@@ -167,9 +199,9 @@
                         <div class="amenity-content">
                             <i class="fas fa-users"></i>
                             <h3>Community Centre</h3>
-                            <p>Space for social gatherings and events.</p>
+                            <p>Space for events.</p>
                         </div>
-                        <img src="Gallery/images/cc.webp" loading="lazy" alt="Community Center Hall">
+                        <img src="Gallery/images/cc.webp" loading="lazy" decoding="async" alt="Community Center">
                     </div>
                 </div>
 
@@ -178,9 +210,9 @@
                         <div class="amenity-content">
                             <i class="fas fa-store"></i>
                             <h3>Central Market</h3>
-                            <p>Daily convenience shopping.</p>
+                            <p>Daily convenience.</p>
                         </div>
-                        <img src="Gallery/images/market.webp" loading="lazy" alt="Central Market Shopping Complex">
+                        <img src="Gallery/images/market.webp" loading="lazy" decoding="async" alt="Market">
                     </div>
                 </div>
 
@@ -188,16 +220,36 @@
         </div>
     </section>
 
-    <section id="location" class="section">
+    <section id="location" class="section bg-light">
         <div class="container">
             <h2 class="section-title">Strategic Location</h2>
             <div class="location-content">
                 <ul class="location-list">
-                    <li><i class="fas fa-plane-departure"></i> <strong>Jewar International Airport:</strong> Just minutes away.</li>
-                    <li><i class="fas fa-road"></i> <strong>Yamuna Expressway:</strong> Direct connectivity to Delhi & Agra.</li>
-                    <li><i class="fas fa-film"></i> <strong>Film City:</strong> Upcoming major entertainment hub nearby.</li>
-                    <li><i class="fas fa-industry"></i> <strong>Tech Zone:</strong> Close to upcoming industrial hubs.</li>
+                    <li><i class="fas fa-plane-departure"></i> <strong>Jewar International Airport:</strong> Approx 15 Mins</li>
+                    <li><i class="fas fa-road"></i> <strong>Yamuna Expressway:</strong> Direct Connectivity (0 Mins)</li>
+                    <li><i class="fas fa-film"></i> <strong>Film City:</strong> Approx 10 Mins</li>
+                    <li><i class="fas fa-industry"></i> <strong>Tech Zone & Noida:</strong> Approx 25 Mins</li>
                 </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>Is registry open?</h4>
+                    <p>Yes, registry is currently open and immediate possession is available.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What plot sizes are available?</h4>
+                    <p>We have multiple sizes ranging from 100 sq yards to 500 sq yards to suit your needs.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Is site visit available?</h4>
+                    <p>Yes, we offer free site visits every day. Please register to book your slot.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -211,12 +263,14 @@
                 <input type="text" id="enq-name" placeholder="Your Name *" required>
                 <input type="email" id="enq-email" placeholder="Your Email *" required>
                 <input type="tel" id="enq-mobile" placeholder="Your Phone Number (10 digits) *" pattern="[0-9]{10}" title="Please enter a valid 10-digit number" required>
-                <input type="text" id="enq-city" placeholder="Your City *" required>
+                <input type="text" id="enq-city" placeholder="Your City (Optional)">
                 <button type="submit" class="btn-primary">Request Call Back</button>
+                <p class="form-note"><i class="fas fa-lock"></i> We respect your privacy. No spam calls.</p>
             </form>
 
             <div class="footer-bottom">
-                <p>&copy; 2024 Harit City. All rights reserved.</p>
+                <p>Harit City, Yamuna Expressway, Near Jewar Airport, Greater Noida</p>
+                <p>&copy; 2026 Harit City. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -224,36 +278,36 @@
     <div id="brochureModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2>Download Brochure</h2>
-            <p>Please fill all details below to unlock the download.</p>
+            <h2>Get Complete Price List</h2>
+            <p>Fill details to view site plan & prices.</p>
             
             <form id="brochureForm">
                 <div class="form-group">
                     <input type="text" id="name" placeholder="Name *" required>
                 </div>
                 <div class="form-group">
-                    <input type="tel" id="mobile" placeholder="Mobile Number (10 digits) *" pattern="[0-9]{10}" title="Please enter a valid 10-digit number" required>
+                    <input type="tel" id="mobile" placeholder="Mobile Number *" pattern="[0-9]{10}" required>
                 </div>
                 <div class="form-group">
                     <input type="email" id="email" placeholder="Email Address *" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="city" placeholder="City *" required>
+                    <input type="text" id="city" placeholder="City (Optional)">
                 </div>
                 <button type="submit" class="btn-primary" style="width: 100%;">Download Now</button>
+                <p class="form-note" style="margin-top:10px; font-size:0.8rem;">100% Secure. Your info is safe.</p>
             </form>
         </div>
     </div>
 
     <div class="mobile-lead-bar">
-        <a href="tel:+919220594678" class="lead-btn call">
-            <i class="fas fa-phone-alt"></i>
+        <a href="tel:+919876543210" class="lead-btn call">
+            <i class="fas fa-phone-alt"></i> Call Now
         </a>
-        <a href="https://wa.me/919220594678?text=I'm%20interested%20in%20Harit%20City" class="lead-btn whatsapp">
-            <i class="fab fa-whatsapp"></i>
+        <a href="https://wa.me/919876543210?text=Hi,%20I%20want%20price%20details%20and%20site%20visit%20for%20Harit%20City" class="lead-btn whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp
         </a>
     </div>
 
-    <script src="script.js"></script>
 </body>
 </html>

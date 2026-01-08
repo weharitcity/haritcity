@@ -1,4 +1,20 @@
-// --- Configuration: YOUR GOOGLE FORM DETAILS ---
+// Modal
+function openModal() {
+  document.getElementById('brochureModal').style.display = 'block';
+}
+
+function closeModal() {
+  document.getElementById('brochureModal').style.display = 'none';
+}
+
+// Counter Animation
+const counters = document.querySelectorAll('.counter');
+let animated = false;
+
+window.addEventListener('scroll', () => {
+  if (animated) return;
+
+  counters.forEach(counter => {// --- Configuration: YOUR GOOGLE FORM DETAILS ---
 const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdi_RoP4stn4sagiKm4VXdhThYskpvTr_IHg0vkZQDuaIVsyw/formResponse';
 
 // Mapping HTML Fields to Google Form Entry IDs
@@ -9,8 +25,6 @@ const FIELD_MAPPING = {
     city: 'entry.1065046570',
     source: 'entry.562185822'
 };
-
-// ---------------------------------------------------------
 
 // 1. Dark Mode Logic
 const toggleBtn = document.getElementById('theme-toggle');
@@ -44,7 +58,7 @@ systemPrefersDark.addEventListener('change', (e) => {
     if (!localStorage.getItem('theme')) { applyTheme(e.matches); }
 });
 
-// 2. Navbar Scroll Logic (NEW: Handles Transparent to Sticky)
+// 2. Navbar Scroll Logic
 const navbar = document.querySelector('.navbar');
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
@@ -63,11 +77,9 @@ hamburger.addEventListener('click', () => {
     const icon = hamburger.querySelector('i');
     if (navMenu.classList.contains('active')) {
         icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
-        // Optional: Force navbar background to be solid when menu is open
         navbar.classList.add('scrolled');
     } else {
         icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
-        // Only remove background if we are at the top of the page
         if (window.scrollY <= 50) {
             navbar.classList.remove('scrolled');
         }
@@ -143,7 +155,8 @@ function sendToGoogle(name, mobile, email, city, source) {
     formData.append(FIELD_MAPPING.name, name);
     formData.append(FIELD_MAPPING.mobile, mobile);
     formData.append(FIELD_MAPPING.email, email);
-    formData.append(FIELD_MAPPING.city, city);
+    // City might be empty, that's fine for Google Forms
+    formData.append(FIELD_MAPPING.city, city || "Not Provided");
     formData.append(FIELD_MAPPING.source, source);
 
     return fetch(GOOGLE_FORM_URL, {
@@ -163,12 +176,10 @@ document.getElementById('brochureForm').addEventListener('submit', function(e) {
     const email = document.getElementById('email').value;
     const city = document.getElementById('city').value;
 
-    // We pass "Brochure Download" as the source
     sendToGoogle(name, mobile, email, city, "Brochure Download")
     .then(() => {
-        alert("Thank you " + name + "! Your details are saved. Downloading brochure...");
+        alert("Thank you " + name + "! Downloading brochure...");
         
-        // Triggers the PDF download
         var link = document.createElement('a');
         link.href = 'brochure.pdf'; 
         link.download = 'HaritCity_Brochure.pdf';
@@ -192,12 +203,27 @@ document.getElementById('enquiryForm').addEventListener('submit', function(e) {
     const email = document.getElementById('enq-email').value;
     const city = document.getElementById('enq-city').value;
 
-    // We pass "Footer Enquiry" as the source
     sendToGoogle(name, mobile, email, city, "Footer Enquiry")
     .then(() => {
-        alert("Thank you " + name + "! We have received your enquiry from " + city + ".");
+        alert("Thank you " + name + "! We have received your enquiry.");
         this.reset();
     })
     .catch(err => alert("Something went wrong."))
     .finally(() => { btn.innerText = originalText; btn.disabled = false; });
+});
+    let target = +counter.dataset.target;
+    let count = 0;
+    let step = target / 80;
+
+    let interval = setInterval(() => {
+      count += step;
+      counter.innerText = Math.floor(count);
+      if (count >= target) {
+        counter.innerText = target;
+        clearInterval(interval);
+      }
+    }, 20);
+  });
+
+  animated = true;
 });
